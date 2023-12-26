@@ -112,6 +112,9 @@ def convert_xmls_to_cocojson(annotation_paths: List[str],
         category_info = {'supercategory': 'none', 'id': label_id, 'name': label}
         output_json_dict['categories'].append(category_info)
 
+    output_json_dir = os.path.dirname(output_jsonpath)
+    if not os.path.exists(output_json_dir):
+        os.makedirs(output_json_dir)
     with open(output_jsonpath, 'w') as f:
         output_json = json.dumps(output_json_dict)
         f.write(output_json)
